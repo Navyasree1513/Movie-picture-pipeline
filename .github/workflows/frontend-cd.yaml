@@ -79,7 +79,7 @@ jobs:
         working-directory: starter/frontend
         run: |
           docker build \
-            --build-arg REACT_APP_MOVIE_API_URL=http://backend \
+            --build-arg REACT_APP_MOVIE_API_URL=http://acdaf762962b1437799b7403eb8c5f1b-262249223.us-east-1.elb.amazonaws.com \
             --tag frontend:${{ github.sha }} .
 
   deploy:
@@ -108,7 +108,7 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
           docker build \
-            --build-arg REACT_APP_MOVIE_API_URL=http://backend \
+            --build-arg REACT_APP_MOVIE_API_URL=http://acdaf762962b1437799b7403eb8c5f1b-262249223.us-east-1.elb.amazonaws.com \
             --tag $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }} .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}
 
